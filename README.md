@@ -46,19 +46,19 @@ http://localhost:3000/
 ##  BACKEND ENDPOINTS POSTMAN CRUD
 
 ```
-### Get-All-Patients
+Get-All-Patients
 http://localhost:3000/api/patients
 
-####Create-Patient
+Create-Patient
 http://localhost:3000/api/patients
 
-### Get-Patient-ById
+Get-Patient-ById
 http://localhost:3000/api/patients/9
 
-### Update-Patient-ById
+Update-Patient-ById
 http://localhost:3000/api/patients/9
 
-### Delete-Patient-ById
+Delete-Patient-ById
 http://localhost:3000/api/patients/9
 ```
 
