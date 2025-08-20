@@ -8,35 +8,54 @@ const model = require("../models/patientModel");
 // ------------------------
 
 const insertPatient = (req, res) => {
-  const patient = req.body; // {name, lastName, age, gender, symptoms, ...}
+  const { name, lastName, age, gender, symptoms, status } = req.body;
 
-  // Assign dates automatically
-  const now = new Date().toISOString(); // format: YYYY-MM-DDTHH:mm:ss.sssZ
-  patient.created_at = now;
-  patient.updated_at = now;
-  // Check if a patient with the same details already exists.
+  // Validate required fields, Avoid empty fields or example values like "string" or age 0 in this case
+  const invalidStrings = ["string"];
+  if (
+    !name?.trim() || invalidStrings.includes(name.trim().toLowerCase()) ||
+    !lastName?.trim() || invalidStrings.includes(lastName.trim().toLowerCase()) ||
+    typeof age !== "number" || age === 0 ||
+    !gender?.trim() || invalidStrings.includes(gender.trim().toLowerCase()) ||
+    !symptoms?.trim() || invalidStrings.includes(symptoms.trim().toLowerCase()) ||
+    !status?.trim() || invalidStrings.includes(status.trim().toLowerCase())
+  ) {
+    return res.status(400).json({ message: "Datos inválidos o de ejemplo" });
+  }
+
+  // CREATE PATIENT OBJECT
+  const patient = {
+    name: name.trim(),
+    lastName: lastName.trim(), //<- .trim() removes spaces at the beginning and end of a text. For example, “  Maria  ” becomes “Maria”.
+    age, //<- age is a number, not text (string).
+    gender: gender.trim(),
+    symptoms: symptoms.trim(),
+    status: status.trim(),
+    created_at: new Date().toISOString(), // <- Add automatic timestamps for created_at 
+    updated_at: new Date().toISOString()  // <- Add automatic timestamps for  updated_at
+  };
+
+  // section check duplicate 
   model.getAllPatients((error, patients) => {
     if (error) return res.status(500).json({ error: "Internal Server Error" });
 
-    //Constant compare exist
+    // Compare fields case-insensitively no duplicates
     const exists = patients.some(
       p =>
-        p.name === patient.name &&
-        p.lastName === patient.lastName &&
+        p.name.toLowerCase() === patient.name.toLowerCase() &&
+        p.lastName.toLowerCase() === patient.lastName.toLowerCase() &&
         p.age === patient.age &&
-        p.gender === patient.gender &&
-        p.symptoms === patient.symptoms
+        p.gender.toLowerCase() === patient.gender.toLowerCase() &&
+        p.symptoms.toLowerCase() === patient.symptoms.toLowerCase()
     );
+    //Message duplicate entry
+    if (exists) return res.status(400).json({ message: "Register duplicate" });
 
-    if (exists) {
-      return res.status(400).json({ message: "Duplicate registration" });
-    }
-
-    // If no exist register patient 
+    // Here call model for insert patient
     model.createPatient(patient, (error, id) => {
       if (error) return res.status(500).json({ error: "Internal Server Error" });
 
-      res.status(201).json({ message: "Patient Create Successful", id });
+      res.status(201).json({ message: "Paciente creado exitosamente", id });
     });
   });
 };

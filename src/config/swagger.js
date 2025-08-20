@@ -33,8 +33,8 @@ const options = {
                   properties: {
                     name: { type: "string" },
                     lastName: { type: "string" },
-                    age: { type: "integer", example: 40 },
-                    // age: { type: "integer" },
+                    // age: { type: "integer", example: 40 },
+                    age: { type: "integer" },
                     gender: { type: "string" },
                     symptoms: { type: "string" },
                     status: { type: "string" },
@@ -91,8 +91,8 @@ const options = {
                   properties: {
                     name: { type: "string" },
                     lastName: { type: "string" },
-                    age: { type: "integer", example: 40 },
-                    // age: { type: "integer" },
+                    // age: { type: "integer", example: 40 },
+                    age: { type: "integer" },
                     gender: { type: "string" },
                     symptoms: { type: "string" },
                     status: { type: "string" },
