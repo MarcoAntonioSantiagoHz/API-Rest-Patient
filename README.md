@@ -33,19 +33,19 @@ API-Rest-Patient/
 
 git clone https://github.com/MarcoAntonioSantiagoHz/API-Rest-Patient.git
 
-
 ## 2 Run Command:
 
 npm start
 
 ## NOTE: Exists 2 options FrontEnd && BackEnd
 
-```
+
 ##  FRONTEND Url
 http://localhost:3000/
 
 ##  BACKEND ENDPOINTS SWAGGER/POSTMAN CRUD
 
+```
 ### Get-All-Patients
 http://localhost:3000/api/patients
 
