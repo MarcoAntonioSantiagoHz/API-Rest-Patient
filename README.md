@@ -11,24 +11,32 @@ API-Rest-Patient/
 ├── src/
 │   ├── config/
 │   │   └── swagger.js           # Swagger configuration
+│
 │   ├── controllers/
 │   │   └── patientController.js # CRUD logic
+│
 │   ├── models/
 │   │   └── patientModel.js      # Database queries
+│
 │   ├── public/
 │   │   ├── index.ejs            # Main view
 │   │   ├── create.ejs           # Form to create patient
 │   │   ├── edit.ejs             # Form to edit patient
 │   │   ├── style.css            # Styles
 │   │   └── logic.js             # Frontend JS to consume API
+│
 │   ├── routes/
 │   │   ├── patientRoute.js      # REST API routes
 │   │   └── patientViewRoute.js  # Views routes (EJS)
+│
 │   ├── utils/
 │   │   └── messages.js          # Messages for responses and DB
+│
 │   ├── validators/
 │   │   └── patientValidator.js  # Request validation
+│
 │   └── app.js                   # Express app configuration
+
 ├── package.json                 # Node dependencies
 └── server.js                    # Entry point
 
