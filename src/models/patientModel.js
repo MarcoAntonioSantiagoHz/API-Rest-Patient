@@ -56,9 +56,49 @@ const getById = (id, callback) => {
 };
 
 
+// Query Update 
+const updatePatient = (id, patient, callback) => {
+  const sql = `UPDATE patients 
+  SET name = ?, 
+  lastName = ?, 
+  age = ?, 
+  gender = ?, 
+  symptoms = ?, 
+  status = ?, 
+  updated_at = ?   
+  WHERE id = ?`;
+  
+  db.run(sql, [
+    patient.name,
+    patient.lastName,
+    patient.age,
+    patient.gender,
+    patient.symptoms,
+    patient.status,
+    patient.updated_at, 
+    id
+  ], function (error) {
+    if (error) {
+      return callback(error);
+    }
+    callback(null, this.changes);
+  });
+};
+
+// Query Delete register patient
+// Eliminar paciente
+const deletePatient = (id, callback) => {
+  const sql = `DELETE FROM patients WHERE id = ?`;
+  db.run(sql, [id], function (error) {
+    if (error) return callback(error);
+    callback(null, this.changes);
+  });
+};
+
 module.exports = {
   createPatient,
   getAllPatients,
   getById,
+  updatePatient,
+  deletePatient
 };
-

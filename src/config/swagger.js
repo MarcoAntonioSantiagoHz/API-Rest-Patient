@@ -1,4 +1,5 @@
-//Creation  swagger ui
+// // Creation  swagger ui
+
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 
@@ -6,9 +7,9 @@ const options = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "API Patients",
+      title: "API REST PATIENTS",
       version: "1.0.0",
-      description: "API REST para gestionar pacientes",
+      description: "REST API for managing patients",
     },
     servers: [{ url: "http://localhost:3000/api" }],
     paths: {
@@ -17,13 +18,10 @@ const options = {
           summary: "Get all patients",
           tags: ["Patients"],
           responses: {
-            200: {
-              description: "List of patients",
-            },
+            200: { description: "List of patients" },
+            500: { description: "Internal Server Error" },
           },
         },
-      },
-      "/create/patients": {
         post: {
           summary: "Create a new patient",
           tags: ["Patients"],
@@ -40,23 +38,100 @@ const options = {
                     gender: { type: "string" },
                     symptoms: { type: "string" },
                     status: { type: "string" },
-                    created_at: { type: "string" },
-                    updated_at: { type: "string" },
                   },
+                  required: ["name", "lastName", "age", "gender"],
                 },
               },
             },
           },
           responses: {
             201: { description: "Patient created" },
+            400: { description: "Registro duplicado" },
+            500: { description: "Internal Server Error" },
+          },
+        },
+      },
+      "/patients/{id}": {
+        get: {
+          summary: "Get patient by ID",
+          tags: ["Patients"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              schema: { type: "integer" },
+              description: "ID del paciente",
+            },
+          ],
+          responses: {
+            200: { description: "Patient found" },
+            404: { description: "Paciente no encontrado" },
+            500: { description: "Internal Server Error" },
+          },
+        },
+        put: {
+          summary: "Update a patient by ID",
+          tags: ["Patients"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              schema: { type: "integer" },
+              description: "ID del paciente",
+            },
+          ],
+          requestBody: {
+            required: true,
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  properties: {
+                    name: { type: "string" },
+                    lastName: { type: "string" },
+                    age: { type: "integer" },
+                    gender: { type: "string" },
+                    symptoms: { type: "string" },
+                    status: { type: "string" },
+                  },
+                },
+              },
+            },
+          },
+          responses: {
+            200: { description: "Patient updated successfully" },
+            404: { description: "Paciente no encontrado" },
+            500: { description: "Internal Server Error" },
+          },
+        },
+        delete: {
+          summary: "Delete a patient by ID",
+          tags: ["Patients"],
+          parameters: [
+            {
+              name: "id",
+              in: "path",
+              required: true,
+              schema: { type: "integer" },
+              description: "ID del paciente",
+            },
+          ],
+          responses: {
+            200: { description: "Patient deleted successfully" },
+            404: { description: "Paciente no encontrado" },
+            500: { description: "Internal Server Error" },
           },
         },
       },
     },
   },
-  apis: [], // Ya no necesitas apuntar a las rutas
+  apis: [],
 };
 
 const specs = swaggerJsdoc(options);
 
 module.exports = { swaggerUi, specs };
+
+

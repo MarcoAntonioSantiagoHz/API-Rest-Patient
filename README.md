@@ -1,28 +1,25 @@
-# REST-Api-Patient to **create, read, update, and delete patients** using Node.js, Express, and SQLite, following a clean architecture.
+# REST-Api-Patient
+**Create, read, update, and delete patients** using Node.js, Express, and SQLite, following a clean architecture.
 
 ## 📁 Project Structure
-
 API-Rest-Patient/
-│── src/
-│ ├── config/
-│ │ └── database.js # SQLite connection
-│ ├── models/
-│ │ └── userModel.js # SQL queries
-│ ├── services/
-│ │ └── userService.js # Business logic layer
-│ ├── controllers/
-│ │ └── userController.js # Calls the service instead of the model directly
-│ ├── routes/
-│ │ └── userRoutes.js # REST endpoints
-│ ├── public/
-│ │ ├── index.html
-│ │ ├── style.css
-│ │ └── main.js # JS to consume the API
-│ └── app.js # Express configuration
-│
-├── database.sqlite # SQLite file (optional, with sample data)
+├── src/
+│   ├── config/
+│   │   └── database.js          # SQLite connection
+│   ├── models/
+│   │   └── patientModel.js      # SQL queries
+│   ├── controllers/
+│   │   └── patientController.js # Calls the model
+│   ├── routes/
+│   │   └── patientRoute.js      # REST endpoints
+│   ├── public/
+│   │   ├── index.html
+│   │   ├── style.css
+│   │   └── main.js              # JS to consume the API
+│   └── app.js                   # Express configuration
+├── database.sqlite              # SQLite file (optional, with sample data)
 ├── package.json
-└── index.js # Entry point
+└── server.js                    # Entry point
 
 ## ⚡ Installation
 
