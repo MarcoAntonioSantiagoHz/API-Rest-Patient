@@ -1,30 +1,64 @@
 // import necessary connectionDb
-const db = require("../config/connectionDb");
+const db = require("../models/sqlite");
 
-class Patient {
 
-  //Create query get patients
-  getAllPatients(callback) { 
-    const sql = "SELECT name, lastName, age, gender, symptoms, status, created_at, updated_at FROM patient";
-    db.all(sql, [], (err, rows) => {
-      if (err) return callback(err);
-      callback(null, rows);
-    });
-  }
+//Creation  all query's for database
 
-  //Create query insert patient
-  insertPatient(patient, callback) { 
-    const { name, lastName, age, gender, symptoms, status, created_at, updated_at } = patient;
-    const sql = `
-      INSERT INTO patient 
-      (name, lastName, age, gender, symptoms, status, created_at, updated_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-    `;
-    db.run(sql, [name, lastName, age, gender, symptoms, status, created_at, updated_at], function (err) {
-      if (err) return callback(err);
-      callback(null, { id: this.lastID, ...patient });
-    });
-  }
-}
 
-module.exports = Patient;
+// Query to insert insert patient
+const createPatient = (patient, callback) => {
+  const sql = `INSERT INTO patients 
+               (name, lastName, age, gender, symptoms, status, created_at, updated_at)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+
+  db.run(sql, [
+    patient.name,
+    patient.lastName,
+    patient.age,
+    patient.gender,
+    patient.symptoms,
+    patient.status,
+    patient.created_at,
+    patient.updated_at
+  ], function (error) {
+    if (error) return callback(error);
+    callback(null, this.lastID);
+  });
+};
+
+
+
+
+
+// Query get patients
+const getAllPatients = (callback) => {
+  const sql = `SELECT * FROM patients`;
+
+  db.all(sql, (error, rows) => {
+    if (error) {
+      return callback(error);
+    }
+
+    callback(null, rows);
+  });
+};
+
+// Query get by id
+const getById = (id, callback) => {
+  const sql = `SELECT * FROM patients WHERE id = ?`;
+
+  db.get(sql, [id], (error, row) => {
+    if (error) {
+      return callback(error);
+    }
+    callback(null, row);
+  });
+};
+
+
+module.exports = {
+  createPatient,
+  getAllPatients,
+  getById,
+};
+

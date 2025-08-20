@@ -8,7 +8,7 @@ module.exports = {
   ERROR_PATIENT: "Error! Get Patients",
   DB_SUCCESSFUL_CONNECTION: "Successful! connection database",
   DB_ERROR_CONNECTION: "Error! Fail connection database",
-  SUCCESS_CREATE: "Paciente creado correctamente",
-  SUCCESS_UPDATE: "Paciente actualizado correctamente",
-  SUCCESS_DELETE: "Paciente eliminado correctamente"
+  SUCCESS_CREATE: "Patient created successfully",
+  SUCCESS_UPDATE: "Patient update successfully",
+  SUCCESS_DELETE: "Patient delete successfully"
 };

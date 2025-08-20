@@ -1,22 +1,80 @@
-// Import dependencies necessary receives request/response and calls the service
-const { getAllPatients, createPatient } = require("../services/patientService");
+//Logic complete crud
 
-// GET /patients
-function getPatients(req, res) {
-  getAllPatients((err, data) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(data);
+const model = require("../models/patientModel");
+
+// ------------------------
+// METHOD POST /patients
+// Create new patient
+// ------------------------
+const insertPatient = (req, res) => {
+  const patient = req.body; // {name, lastName, age, gender, symptoms, ...}
+
+  // Check if a patient with the same details already exists.
+  model.getAllPatients((error, patients) => {
+    if (error) return res.status(500).json({ error: "Internal Server Error" });
+
+    //Constant compare exist
+    const exists = patients.some(
+      p =>
+        p.name === patient.name &&
+        p.lastName === patient.lastName &&
+        p.age === patient.age &&
+        p.gender === patient.gender &&
+        p.symptoms === patient.symptoms
+    );
+
+    if (exists) {
+      return res.status(400).json({ message: "Registro duplicado" });
+    }
+
+    // If no exist register patient 
+    model.createPatient(patient, (error, id) => {
+      if (error) return res.status(500).json({ error: "Internal Server Error" });
+
+      res.status(201).json({ message: "Paciente creado", id });
+    });
   });
-}
+};
 
-// POST /patients
-function insertPatient(req, res) {
-  const patientData = req.body;
+// ------------------------
+// METHOD GET /patients
+// Get all patients
+// ------------------------
+const fetchAllPatients = (req, res) => {
+  model.getAllPatients((error, patients) => {
+    if (error) return res.status(500).json({ error: "Internal Server Error" });
 
-  createPatient(patientData, (err, newPatient) => { 
-    if (err) return res.status(500).json({ error: err.message });
-    res.status(201).json(newPatient);
+    res.json(patients);
   });
-}
+};
 
-module.exports = { getPatients, insertPatient };
+// ------------------------
+// GET /patients/:id
+// Get patient By ID
+// ------------------------
+const getPatientById = (req, res) => {
+  const { id } = req.params;
+
+  model.getById(id, (error, patient) => {
+    if (error) return res.status(500).json({ message: "Internal Server Error" });
+    if (!patient) return res.status(404).json({ message: "Paciente no encontrado" });
+
+    res.json(patient);
+  });
+};
+
+module.exports = {
+  insertPatient,
+  fetchAllPatients,
+  getPatientById
+};
+
+
+
+
+
+
+
+
+
+

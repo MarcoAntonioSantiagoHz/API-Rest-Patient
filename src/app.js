@@ -1,14 +1,25 @@
+
 const express = require("express");
 const app = express();
+const { swaggerUi, specs } = require("./config/swagger");
 
-// Import routes
 const patientRoutes = require("./routes/patientRoute");
 
-// Middleware para parsear JSON
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Prefijo /api para todas las rutas
+// Redirigir la raíz a Swagger UI
+app.get("/", (req, res) => {
+    res.redirect("/api-docs");
+});
+
+// Rutas de la API
 app.use("/api", patientRoutes);
 
+// Swagger
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
 
 module.exports = app;
+
+
+

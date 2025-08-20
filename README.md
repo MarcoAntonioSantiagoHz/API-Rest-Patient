@@ -41,6 +41,10 @@ npm install express
 # 5 install sqlite
 npm install sqlite3
 
+# 6 install swagger ui
+npm install swagger-ui-express swagger-jsdoc
+
+
 ## Compile project
 
 
