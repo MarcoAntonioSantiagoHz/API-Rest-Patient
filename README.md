@@ -1,4 +1,5 @@
 # Rest-Api-Patient
+
 **Create, read, update, and delete patients** using Node.js, Express, and SQLite, following a clean architecture.
 
 ## 📁 Project Structure MVC
@@ -24,12 +25,17 @@ API-Rest-Patient/
 └── server.js                    # Entry point
 ```
 
-## ⚡ HOW COMPILE PROJECT:
+# ⚡ HOW COMPILE PROJECT:
+
+## Open Terminal VSCode
 
 ## 1 Clone the repository:
+
 git clone https://github.com/MarcoAntonioSantiagoHz/API-Rest-Patient.git
 
-##  2 Open Terminal VSCode
+
+## 2 Run Command:
+
 npm start
 
 ## NOTE: Exists 2 options FrontEnd && BackEnd
@@ -37,7 +43,7 @@ npm start
 ```
 ##  FRONTEND Url
 http://localhost:3000/
- 
+
 ##  BACKEND ENDPOINTS SWAGGER/POSTMAN CRUD
 
 ### Get-All-Patients
@@ -59,28 +65,35 @@ http://localhost:3000/api/patients/9
 ## NOTES:
 
 ### 📦 Dependencies Installed
- 
+
 ### 2 Install dependencies:
+
 npm install
 
 ### 3 Initialize project (if package.json doesn’t exist yet):
+
 npm init -y
 
 ### 4 npm install express
+
 npm install express
 
 ### 5 install sqlite
+
 npm install sqlite3
 
 ### 6 install swagger ui
+
 npm install swagger-ui-express swagger-jsdoc
 
 ### 7 install express-validator
+
 npm install express-validator
 
 ### 8 install dependency ejs
+
 npm install method-override
 
 ### 9 install EJS, which is the template engine.
-npm install ejs
 
+npm install ejs
