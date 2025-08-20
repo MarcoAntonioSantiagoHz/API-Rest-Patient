@@ -22,14 +22,12 @@ API-Rest-Patient/
 ├── package.json
 └── server.js                    # Entry point
 ⚡ Installation
-Clone the repository:
-
+### Clone the repository:
 
 git clone https://github.com/MarcoAntonioSantiagoHz/API-Rest-Patient.git
 Navigate to the project directory:
 
-
-cd API-Rest-Patient
+### cd API-Rest-Patient
 Install dependencies:
 
 
