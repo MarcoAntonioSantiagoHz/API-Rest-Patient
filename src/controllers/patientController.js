@@ -6,27 +6,13 @@ const model = require("../models/patientModel");
 // METHOD POST /patients
 // Create new patient
 // ------------------------
-
 const insertPatient = (req, res) => {
   const { name, lastName, age, gender, symptoms, status } = req.body;
 
-  // Validate required fields, Avoid empty fields or example values like "string" or age 0 in this case
-  const invalidStrings = ["string"];
-  if (
-    !name?.trim() || invalidStrings.includes(name.trim().toLowerCase()) ||
-    !lastName?.trim() || invalidStrings.includes(lastName.trim().toLowerCase()) ||
-    typeof age !== "number" || age === 0 ||
-    !gender?.trim() || invalidStrings.includes(gender.trim().toLowerCase()) ||
-    !symptoms?.trim() || invalidStrings.includes(symptoms.trim().toLowerCase()) ||
-    !status?.trim() || invalidStrings.includes(status.trim().toLowerCase())
-  ) {
-    return res.status(400).json({ message: "Datos inválidos o de ejemplo" });
-  }
-
-  // CREATE PATIENT OBJECT
   const patient = {
+    // The .trim() removes spaces at the beginning and end of a text. For example, “  Maria  ” becomes “Maria”.
     name: name.trim(),
-    lastName: lastName.trim(), //<- .trim() removes spaces at the beginning and end of a text. For example, “  Maria  ” becomes “Maria”.
+    lastName: lastName.trim(),
     age, //<- age is a number, not text (string).
     gender: gender.trim(),
     symptoms: symptoms.trim(),

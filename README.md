@@ -23,7 +23,7 @@ API-Rest-Patient/
 ├── package.json
 └── server.js                    # Entry point
 ```
-## ⚡ Installation
+# ⚡ Installation
 
 ## 1 Clone the repository:
 git clone https://github.com/MarcoAntonioSantiagoHz/API-Rest-Patient.git
@@ -42,6 +42,10 @@ npm install sqlite3
 
 ## 6 install swagger ui
 npm install swagger-ui-express swagger-jsdoc
+
+## 7 install express-validator
+npm install express-validator
+
 
 # Compile project Terminal VSCode
 npm start
