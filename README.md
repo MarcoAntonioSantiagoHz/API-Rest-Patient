@@ -43,7 +43,7 @@ npm start
 ##  FRONTEND Url
 http://localhost:3000/
 
-##  BACKEND ENDPOINTS SWAGGER/POSTMAN CRUD
+##  BACKEND ENDPOINTS POSTMAN CRUD
 
 ```
 ### Get-All-Patients
