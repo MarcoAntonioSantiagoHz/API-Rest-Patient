@@ -27,7 +27,7 @@ API-Rest-Patient/
 ## ⚡ Installation
 
 # 1 Clone the repository:
-git clone <REPOSITORY_URL>
+git clone https://github.com/MarcoAntonioSantiagoHz/API-Rest-Patient.git
 
 # 2 Install dependencies:
 npm install
