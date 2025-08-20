@@ -27,13 +27,13 @@ API-Rest-Patient/
 
 # ⚡ HOW COMPILE PROJECT:
 
-## Open Terminal VSCode
+## 1 Open Terminal 
 
-## 1 Clone the repository:
+## 2 Clone The Repository:
 
 git clone https://github.com/MarcoAntonioSantiagoHz/API-Rest-Patient.git
 
-## 2 Run Command:
+## 3 Run Command In VS:
 
 npm start
 
