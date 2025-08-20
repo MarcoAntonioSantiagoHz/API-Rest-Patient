@@ -1,5 +1,4 @@
 // // Creation  swagger ui
-
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 
@@ -34,7 +33,8 @@ const options = {
                   properties: {
                     name: { type: "string" },
                     lastName: { type: "string" },
-                    age: { type: "integer" },
+                    age: { type: "integer", example: 40 },
+                    // age: { type: "integer" },
                     gender: { type: "string" },
                     symptoms: { type: "string" },
                     status: { type: "string" },
@@ -91,11 +91,13 @@ const options = {
                   properties: {
                     name: { type: "string" },
                     lastName: { type: "string" },
-                    age: { type: "integer" },
+                    age: { type: "integer", example: 40 },
+                    // age: { type: "integer" },
                     gender: { type: "string" },
                     symptoms: { type: "string" },
                     status: { type: "string" },
                   },
+                  required: ["name", "lastName", "age", "gender"],
                 },
               },
             },
@@ -130,8 +132,22 @@ const options = {
   apis: [],
 };
 
+// Crear specs después de definir options
 const specs = swaggerJsdoc(options);
 
-module.exports = { swaggerUi, specs };
+const swaggerOptions = {
+  customCss: `
+    .swagger-ui .topbar { background-color: #3f3ffc; }
+    .swagger-ui .topbar a span { color: #fff; font-weight: bold; }
+    .swagger-ui .scheme-container { display: none; }
+    body { background-color: #f5f6fa; } 
+    .swagger-ui .opblock-summary { border-radius: 12px; }
+    .swagger-ui .opblock.opblock-get { background: #e0e7ff; }
+    .swagger-ui .opblock.opblock-post { background: #d4f7dc; }
+    .swagger-ui .opblock.opblock-put { background: #fff3cd; }
+    .swagger-ui .opblock.opblock-delete { background: #f8d7da; }
+  `,
+  customSiteTitle: "API REST Patients",
+};
 
-
+module.exports = { swaggerUi, specs, swaggerOptions };
