@@ -24,22 +24,21 @@ API-Rest-Patient/
 └── server.js                    # Entry point
 ```
 
-# ⚡ HOW COMPILE PROJECT:
+## ⚡ HOW COMPILE PROJECT:
 
 ## 1 Clone the repository:
 git clone https://github.com/MarcoAntonioSantiagoHz/API-Rest-Patient.git
 
-#  2 Open Terminal VSCode
+##  2 Open Terminal VSCode
 npm start
 
-# NOTE: Exists 2 options FrontEnd && BackEnd
+## NOTE: Exists 2 options FrontEnd && BackEnd
 
-#  FrontEnd Url
+```
+##  FRONTEND Url
 http://localhost:3000/
  
-#  BackEnd Url
-
-# ENDPOINTS SWAGGER/POSTMAN CRUD
+##  BACKEND ENDPOINTS SWAGGER/POSTMAN CRUD
 
 ### Get-All-Patients
 http://localhost:3000/api/patients
@@ -55,7 +54,7 @@ http://localhost:3000/api/patients/9
 
 ### Delete-Patient-ById
 http://localhost:3000/api/patients/9
-
+```
 
 ## NOTES:
 
