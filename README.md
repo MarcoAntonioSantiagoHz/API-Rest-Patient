@@ -40,10 +40,10 @@ npm start
 ## NOTE: FrontEnd && BackEnd
 
 
-##  FRONTEND Url
+##  FRONTEND ENDPOINT:
 http://localhost:3000/
 
-##  BACKEND ENDPOINTS POSTMAN CRUD
+##  BACKEND ENDPOINTS POSTMAN CRUD:
 
 ```
 Get-All-Patients:
@@ -66,34 +66,34 @@ http://localhost:3000/api/patients/9
 
 ### 📦 Dependencies Installed
 
-### 2 Install dependencies:
+### Install dependencies:
 
 npm install
 
-### 3 Initialize project (if package.json doesn’t exist yet):
+### Initialize project (if package.json doesn’t exist yet):
 
 npm init -y
 
-### 4 npm install express
+### npm install express
 
 npm install express
 
-### 5 install sqlite
+### install sqlite
 
 npm install sqlite3
 
-### 6 install swagger ui
+### install swagger ui
 
 npm install swagger-ui-express swagger-jsdoc
 
-### 7 install express-validator
+### install express-validator
 
 npm install express-validator
 
-### 8 install dependency ejs
+### install dependency ejs
 
 npm install method-override
 
-### 9 install EJS, which is the template engine.
+### install EJS, which is the template engine.
 
 npm install ejs
