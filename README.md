@@ -1,4 +1,4 @@
-# REST-Api-Patient
+# Rest-Api-Patient
 **Create, read, update, and delete patients** using Node.js, Express, and SQLite, following a clean architecture.
 
 ## 📁 Project Structure MVC
@@ -43,4 +43,5 @@ npm install sqlite3
 ## 6 install swagger ui
 npm install swagger-ui-express swagger-jsdoc
 
-## Compile project
+# Compile project Terminal VSCode
+npm start
