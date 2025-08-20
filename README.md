@@ -6,23 +6,32 @@
 
 ```
 API-Rest-Patient/
+├── database/
+│   └── database.sqlite          # SQLite database (optional, can include sample data)
 ├── src/
 │   ├── config/
-│   │   └── database.js          # SQLite connection
-│   ├── models/
-│   │   └── patientModel.js      # SQL queries
+│   │   └── swagger.js           # Swagger configuration
 │   ├── controllers/
-│   │   └── patientController.js # Calls the model
-│   ├── routes/
-│   │   └── patientRoute.js      # REST endpoints
+│   │   └── patientController.js # CRUD logic
+│   ├── models/
+│   │   └── patientModel.js      # Database queries
 │   ├── public/
-│   │   ├── index.html
-│   │   ├── style.css
-│   │   └── main.js              # JS to consume the API
-│   └── app.js                   # Express configuration
-├── database.sqlite              # SQLite file (optional, with sample data)
-├── package.json
+│   │   ├── index.ejs            # Main view
+│   │   ├── create.ejs           # Form to create patient
+│   │   ├── edit.ejs             # Form to edit patient
+│   │   ├── style.css            # Styles
+│   │   └── logic.js              # Frontend JS to consume API
+│   ├── routes/
+│   │   ├── patientRoute.js      # REST API routes
+│   │   └── patientViewRoute.js  # Views routes (EJS)
+│   ├── utils/
+│   │   └── messages.js          # Messages for responses and DB
+│   ├── validators/
+│   │   └── patientValidator.js  # Request validation
+│   └── app.js                   # Express app configuration
+├── package.json                 # Node dependencies
 └── server.js                    # Entry point
+
 ```
 
 # ⚡ HOW COMPILE PROJECT:
