@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Paciente</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title"><i class="fas fa-user-plus"></i> Crear Paciente</h1>
+            <a href="/" class="btn btn-primary">
+                <i class="fas fa-arrow-left"></i> Volver a la lista
+            </a>
+        </div>
+
+        <form action="/api/patients" method="POST" class="form-container">
+            <input type="text" name="name" placeholder="Nombre" required>
+            <input type="text" name="lastName" placeholder="Apellido" required>
+            <input type="number" name="age" placeholder="Edad" required>
+            <input type="text" name="gender" placeholder="Género" required>
+            <input type="text" name="symptoms" placeholder="Síntomas" required>
+            <input type="text" name="status" placeholder="Estado" required>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-plus-circle"></i> Crear</button>
+        </form>
+    </div>
+</body>
+<!-- call logic script -->
+<script src="/js/logic.js"></script>
+
+</html>

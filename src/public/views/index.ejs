@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión de Pacientes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    </head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title"><i class="fas fa-user-injured"></i> Lista de Pacientes</h1>
+            <a href="/create" class="btn btn-primary">
+                <i class="fas fa-plus-circle"></i> Crear Nuevo Paciente
+            </a>
+        </div>
+        
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Edad</th>
+                        <th>Género</th>
+                        <th>Síntomas</th>
+                        <th>Status</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (patients.length > 0) { %>
+                        <% patients.forEach(patient => { %>
+                            <tr>
+                                <td><%= patient.id %></td>
+                                <td><%= patient.name %></td>
+                                <td><%= patient.lastName %></td>
+                                <td><%= patient.age %></td>
+                                <td><%= patient.gender %></td>
+                                <td><%= patient.symptoms %></td>
+                                <td>
+                                    <span class="status <%= patient.status === 'Activo' ? 'status-active' : 'status-inactive' %>">
+                                        <%= patient.status %>
+                                    </span>
+                                </td>
+                                <td class="action-cell">
+                                    <a href="/edit/<%= patient.id %>" class="btn btn-edit">
+                                        <i class="fas fa-edit"></i> Editar
+                                    </a>
+                                    <form action="/api/patients/<%= patient.id %>?_method=DELETE" method="POST" style="display:inline;">
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fas fa-trash"></i> Eliminar
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="8">
+                                <div class="empty-state">
+                                    <i class="fas fa-folder-open"></i>
+                                    <h3>No hay pacientes registrados</h3>
+                                    <p>Comienza agregando un nuevo paciente al sistema</p>
+                                </div>
+                            </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+<!-- call logic script -->
+<script src="/js/logic.js"></script>
+
+</html>

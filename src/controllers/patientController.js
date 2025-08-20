@@ -5,10 +5,13 @@ const model = require("../models/patientModel");
 // ------------------------
 // METHOD POST /patients
 // Create new patient
-// ------------------------
+// // ------------------------
+
+
 const insertPatient = (req, res) => {
   const { name, lastName, age, gender, symptoms, status } = req.body;
 
+  // Create patient object with the received data
   const patient = {
     // The .trim() removes spaces at the beginning and end of a text. For example, “  Maria  ” becomes “Maria”.
     name: name.trim(),
@@ -18,26 +21,29 @@ const insertPatient = (req, res) => {
     symptoms: symptoms.trim(),
     status: status.trim(),
     created_at: new Date().toISOString(), // <- Add automatic timestamps for created_at 
-    updated_at: new Date().toISOString()  // <- Add automatic timestamps for  updated_at
+    updated_at: new Date().toISOString() // <- Add automatic timestamps for  updated_at
   };
 
   // section check duplicate 
+  // Get object patient verify no duplicates
   model.getAllPatients((error, patients) => {
     if (error) return res.status(500).json({ error: "Internal Server Error" });
 
-    // Compare fields case-insensitively no duplicates
-    const exists = patients.some(
-      p =>
-        p.name.toLowerCase() === patient.name.toLowerCase() &&
-        p.lastName.toLowerCase() === patient.lastName.toLowerCase() &&
-        p.age === patient.age &&
-        p.gender.toLowerCase() === patient.gender.toLowerCase() &&
-        p.symptoms.toLowerCase() === patient.symptoms.toLowerCase()
+    // Check for duplicates by comparing only relevant fields
+    const exists = patients.some(p =>
+      // the toLowerCase() && Check if the patient already exists by comparing all fields (text without case sensitivity)
+      p.name.toLowerCase() === patient.name.toLowerCase() &&
+      p.lastName.toLowerCase() === patient.lastName.toLowerCase() &&
+      p.age === patient.age &&
+      p.gender.toLowerCase() === patient.gender.toLowerCase() &&
+      p.symptoms.toLowerCase() === patient.symptoms.toLowerCase()
     );
-    //Message duplicate entry
-    if (exists) return res.status(400).json({ message: "Register duplicate" });
 
-    // Here call model for insert patient
+    if (exists) {
+      return res.status(400).json({ message: "Register duplicate" });
+    }
+
+    // Post insert patient if no exist duplicates
     model.createPatient(patient, (error, id) => {
       if (error) return res.status(500).json({ error: "Internal Server Error" });
 
@@ -45,6 +51,7 @@ const insertPatient = (req, res) => {
     });
   });
 };
+
 
 // ------------------------
 // METHOD GET /patients
@@ -56,7 +63,7 @@ const fetchAllPatients = (req, res) => {
     if (error) return res.status(500).json({ error: "Internal Server Error" });
 
     if (patients.length === 0) {
-      return res.json({ message: "No hay pacientes registrados aún", data: [] });
+      return res.json({ message: "Patients no registers found for moment", data: [] });
     }
 
     res.json(patients);

@@ -1,0 +1,218 @@
+ :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --success: #2ecc71;
+            --light: #ecf0f1;
+            --dark: #34495e;
+            --text: #2c3e50;
+            --text-light: #7f8c8d;
+            --border: #ddd;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+        }
+        
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .page-title {
+            color: var(--primary);
+            font-size: 28px;
+            font-weight: 600;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .btn-danger {
+            background-color: var(--accent);
+            color: white;
+            padding: 6px 12px;
+            font-size: 14px;
+        }
+        
+        .btn-danger:hover {
+            background-color: #c0392b;
+        }
+        
+        .btn-edit {
+            background-color: var(--success);
+            color: white;
+            padding: 6px 12px;
+            font-size: 14px;
+            margin-right: 8px;
+        }
+        
+        .btn-edit:hover {
+            background-color: #27ae60;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+        
+        th {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #e8f4fc;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .status-active {
+            background-color: #e7f6e9;
+            color: #2ecc71;
+        }
+        
+        .status-inactive {
+            background-color: #fbebea;
+            color: #e74c3c;
+        }
+        
+        .action-cell {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-light);
+        }
+        
+        .empty-state i {
+            font-size: 50px;
+            margin-bottom: 15px;
+            color: #ddd;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            th, td {
+                padding: 10px;
+            }
+            
+            .action-cell {
+                flex-direction: column;
+                gap: 5px;
+            }
+             }
+                .btn-primary:hover {
+                background-color: #2980b9;
+                transform: translateY(-2px);
+            }
+
+            /* espacio entre iconos y texto */
+            .btn i {
+                margin-right: 8px;
+            }
+
+
+            /*Init Style From create.ejs and edit.ejs*/
+            .form-container {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .form-container input {
+                padding: 10px 15px;
+                border: 1px solid var(--border);
+                border-radius: 6px;
+                font-size: 16px;
+            }
+
+            .form-container button {
+                align-self: flex-start;
+            }
+
+            /* Si quieres que todos los iconos en botones tengan espacio */
+            .btn i {
+                margin-right: 8px;
+            }

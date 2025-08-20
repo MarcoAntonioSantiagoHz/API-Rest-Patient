@@ -23,29 +23,65 @@ API-Rest-Patient/
 ├── package.json
 └── server.js                    # Entry point
 ```
-# ⚡ Installation
+
+# ⚡ HOW COMPILE PROJECT:
 
 ## 1 Clone the repository:
 git clone https://github.com/MarcoAntonioSantiagoHz/API-Rest-Patient.git
 
-## 2 Install dependencies:
+#  2 Open Terminal VSCode
+npm start
+
+# NOTE: Exists 2 options FrontEnd && BackEnd
+
+#  FrontEnd Url
+http://localhost:3000/
+ 
+#  BackEnd Url
+
+# ENDPOINTS SWAGGER/POSTMAN CRUD
+
+### Get-All-Patients
+http://localhost:3000/api/patients
+
+####Create-Patient
+http://localhost:3000/api/patients
+
+### Get-Patient-ById
+http://localhost:3000/api/patients/9
+
+### Update-Patient-ById
+http://localhost:3000/api/patients/9
+
+### Delete-Patient-ById
+http://localhost:3000/api/patients/9
+
+
+## NOTES:
+
+### 📦 Dependencies Installed
+ 
+### 2 Install dependencies:
 npm install
 
-## 3 Initialize project (if package.json doesn’t exist yet):
+### 3 Initialize project (if package.json doesn’t exist yet):
 npm init -y
 
-## 4 npm install express
+### 4 npm install express
 npm install express
 
-## 5 install sqlite
+### 5 install sqlite
 npm install sqlite3
 
-## 6 install swagger ui
+### 6 install swagger ui
 npm install swagger-ui-express swagger-jsdoc
 
-## 7 install express-validator
+### 7 install express-validator
 npm install express-validator
 
+### 8 install dependency ejs
+npm install method-override
 
-# Compile project Terminal VSCode
-npm start
+### 9 install EJS, which is the template engine.
+npm install ejs
+
