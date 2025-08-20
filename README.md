@@ -4,6 +4,26 @@ Create, read, update, and delete patients using Node.js, Express, and SQLite, fo
 ## 📁 Notes
 Backend API to manage patients with CRUD operations (Create, Read, Update, Delete).
 
+```
+API-Rest-Patient/
+├── src/
+│   ├── config/
+│   │   └── database.js          # SQLite connection
+│   ├── models/
+│   │   └── patientModel.js      # SQL queries
+│   ├── controllers/
+│   │   └── patientController.js # Calls the model
+│   ├── routes/
+│   │   └── patientRoute.js      # REST endpoints
+│   ├── public/
+│   │   ├── index.html
+│   │   ├── style.css
+│   │   └── main.js              # JS to consume the API
+│   └── app.js                   # Express configuration
+├── database.sqlite              # SQLite file (optional, with sample data)
+├── package.json
+└── server.js                    # Entry point
+```
 ## ⚡ Installation
 
 ## 1 Clone the repository:
