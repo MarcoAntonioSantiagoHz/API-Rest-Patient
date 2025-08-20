@@ -41,7 +41,7 @@ const insertPatient = (req, res) => {
     model.createPatient(patient, (error, id) => {
       if (error) return res.status(500).json({ error: "Internal Server Error" });
 
-      res.status(201).json({ message: "Paciente creado exitosamente", id });
+      res.status(201).json({ message: "Patient created Successful", id });
     });
   });
 };
@@ -50,13 +50,19 @@ const insertPatient = (req, res) => {
 // METHOD GET /patients
 // Get all patients
 // ------------------------
+
 const fetchAllPatients = (req, res) => {
   model.getAllPatients((error, patients) => {
     if (error) return res.status(500).json({ error: "Internal Server Error" });
 
+    if (patients.length === 0) {
+      return res.json({ message: "No hay pacientes registrados aún", data: [] });
+    }
+
     res.json(patients);
   });
 };
+
 
 // ------------------------
 // GET /patients/:id
