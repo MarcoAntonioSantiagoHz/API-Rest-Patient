@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Paciente</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
     <div class="container">
         <div class="page-header">
@@ -15,17 +17,36 @@
             </a>
         </div>
 
-        <form action="/api/patients/<%= patient.id %>?_method=PUT" method="POST" class="form-container">
+
+        <!-- <form action="/api/patients/<%= patient.id %>?_method=PUT" method="POST" class="form-container"> -->
+        <form action="/api/patients/<%= patient.id %>" method="POST" class="form-container">
+            <input type="hidden" name="_method" value="PUT">
+
             <input type="text" name="name" value="<%= patient.name %>" placeholder="Nombre" required>
             <input type="text" name="lastName" value="<%= patient.lastName %>" placeholder="Apellido" required>
             <input type="number" name="age" value="<%= patient.age %>" placeholder="Edad" required>
-            <input type="text" name="gender" value="<%= patient.gender %>" placeholder="Género" required>
             <input type="text" name="symptoms" value="<%= patient.symptoms %>" placeholder="Síntomas" required>
-            <input type="text" name="status" value="<%= patient.status %>" placeholder="Estado" required>
+
+            <label for="gender">Género:</label>
+            <select id="gender" name="gender" required>
+                <option value="">-- Selecciona --</option>
+                <option value="masculino" <%=patient.gender==='masculino' ? 'selected' : '' %>>Masculino</option>
+                <option value="femenino" <%=patient.gender==='femenino' ? 'selected' : '' %>>Femenino</option>
+                <option value="otro" <%=patient.gender==='otro' ? 'selected' : '' %>>Otro</option>
+            </select>
+
+            <label for="status">Status:</label>
+            <select id="status" name="status" required>
+                <option value="">-- Selecciona --</option>
+                <option value="activo" <%=patient.status==='activo' ? 'selected' : '' %>>Activo</option>
+                <option value="inactivo" <%=patient.status==='inactivo' ? 'selected' : '' %>>Inactivo</option>
+            </select>
+
             <button type="submit" class="btn btn-primary">
                 <i class="fas fa-save"></i> Actualizar
             </button>
         </form>
+
     </div>
 </body>
 <!--call logic script -->

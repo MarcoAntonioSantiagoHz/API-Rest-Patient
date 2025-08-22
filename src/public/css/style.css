@@ -136,9 +136,10 @@
             font-weight: 500;
         }
         
+        /*STYLES STATUS active inactive*/
         .status-active {
-            background-color: #e7f6e9;
-            color: #2ecc71;
+             background-color: #d0e7ff; 
+             color: #1a73e8;           /
         }
         
         .status-inactive {
@@ -201,12 +202,23 @@
                 gap: 15px;
             }
 
+            /* style for input text submit */
             .form-container input {
                 padding: 10px 15px;
                 border: 1px solid var(--border);
                 border-radius: 6px;
                 font-size: 16px;
             }
+            /* style for dropdown select */
+            .form-container select {
+            padding: 10px 15px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 16px;
+            background-color: white;
+            color: var(--text);
+           }
+
 
             .form-container button {
                 align-self: flex-start;

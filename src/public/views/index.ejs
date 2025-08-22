@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -7,8 +6,7 @@
     <title>Sistema de Gestión de Pacientes</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/css/style.css">
-
-    </head>
+</head>
 <body>
     <div class="container">
         <div class="page-header">
@@ -29,6 +27,8 @@
                         <th>Género</th>
                         <th>Síntomas</th>
                         <th>Status</th>
+                        <th>Creado</th>
+                        <!-- <th>Fecha Creación</th> -->
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -42,11 +42,18 @@
                                 <td><%= patient.age %></td>
                                 <td><%= patient.gender %></td>
                                 <td><%= patient.symptoms %></td>
+
+                                <!-- Status with color activo/inactivo -->
                                 <td>
-                                    <span class="status <%= patient.status === 'Activo' ? 'status-active' : 'status-inactive' %>">
+                                    <span class="status <%= patient.status.toLowerCase() === 'activo' ? 'status-active' : 'status-inactive' %>">
                                         <%= patient.status %>
                                     </span>
                                 </td>
+
+                                <!-- show date with format dd/mm/yyyy></td> -->
+                                 <td><%= new Date(patient.created_at).toLocaleDateString('es-ES') %> </td>
+                                
+                        
                                 <td class="action-cell">
                                     <a href="/edit/<%= patient.id %>" class="btn btn-edit">
                                         <i class="fas fa-edit"></i> Editar
@@ -61,7 +68,7 @@
                         <% }) %>
                     <% } else { %>
                         <tr>
-                            <td colspan="8">
+                            <td colspan="9">
                                 <div class="empty-state">
                                     <i class="fas fa-folder-open"></i>
                                     <h3>No hay pacientes registrados</h3>
@@ -74,8 +81,8 @@
             </table>
         </div>
     </div>
-</body>
-<!-- call logic script -->
-<script src="/js/logic.js"></script>
 
+    <!-- call logic script -->
+    <script src="/js/logic.js"></script>
+</body>
 </html>

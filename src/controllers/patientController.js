@@ -34,7 +34,9 @@ const insertPatient = (req, res) => {
       // the toLowerCase() && Check if the patient already exists by comparing all fields (text without case sensitivity)
       p.name.toLowerCase() === patient.name.toLowerCase() &&
       p.lastName.toLowerCase() === patient.lastName.toLowerCase() &&
-      p.age === patient.age &&
+      // p.age === patient.age &&
+      p.age === Number(patient.age) &&        // <-- convert to number to verify
+
       p.gender.toLowerCase() === patient.gender.toLowerCase() &&
       p.symptoms.toLowerCase() === patient.symptoms.toLowerCase()
     );
