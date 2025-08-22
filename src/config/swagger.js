@@ -1,4 +1,5 @@
-// // Creation  swagger ui
+// // // Creation  swagger ui
+
 const swaggerJsdoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 
@@ -12,15 +13,7 @@ const options = {
     },
     servers: [{ url: "http://localhost:3000/api" }],
     paths: {
-      "/patients": {
-        get: {
-          summary: "Get all patients",
-          tags: ["Patients"],
-          responses: {
-            200: { description: "List of patients" },
-            500: { description: "Internal Server Error" },
-          },
-        },
+      "/create/patient": {
         post: {
           summary: "Create a new patient",
           tags: ["Patients"],
@@ -33,7 +26,6 @@ const options = {
                   properties: {
                     name: { type: "string" },
                     lastName: { type: "string" },
-                    // age: { type: "integer", example: 40 },
                     age: { type: "integer" },
                     gender: { type: "string" },
                     symptoms: { type: "string" },
@@ -51,6 +43,18 @@ const options = {
           },
         },
       },
+
+      "/patients": {
+        get: {
+          summary: "Get all patients",
+          tags: ["Patients"],
+          responses: {
+            200: { description: "List of patients" },
+            500: { description: "Internal Server Error" },
+          },
+        },
+      },
+
       "/patients/{id}": {
         get: {
           summary: "Get patient by ID",
@@ -91,7 +95,6 @@ const options = {
                   properties: {
                     name: { type: "string" },
                     lastName: { type: "string" },
-                    // age: { type: "integer", example: 40 },
                     age: { type: "integer" },
                     gender: { type: "string" },
                     symptoms: { type: "string" },
@@ -132,7 +135,6 @@ const options = {
   apis: [],
 };
 
-// Crear specs después de definir options
 const specs = swaggerJsdoc(options);
 
 const swaggerOptions = {

@@ -27,9 +27,6 @@ const createPatient = (patient, callback) => {
 };
 
 
-
-
-
 // Query get patients
 const getAllPatients = (callback) => {
   const sql = `SELECT * FROM patients`;

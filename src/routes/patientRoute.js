@@ -3,8 +3,8 @@ const router = express.Router();
 const patientController = require("../controllers/patientController");
 const { createPatientValidator } = require("../validators/patientValidator");
 
-// POST /patients con validación
-router.post("/patients", createPatientValidator, patientController.insertPatient);
+// POST /patients con validations
+router.post("/create/patient", createPatientValidator, patientController.insertPatient);
 
 // ROUTES
 router.get("/patients", patientController.fetchAllPatients); // <- get all patients
