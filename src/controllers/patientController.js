@@ -1,6 +1,7 @@
 //Logic complete crud
 
 const model = require("../models/patientModel");
+const messages = require("../utils/messages");
 
 // ------------------------
 // METHOD POST /patients
@@ -27,7 +28,7 @@ const insertPatient = (req, res) => {
   // section check duplicate 
   // Get object patient verify no duplicates
   model.getAllPatients((error, patients) => {
-    if (error) return res.status(500).json({ error: "Internal Server Error" });
+    if (error) return res.status(500).json({ message: messages.ERROR_INTERNAL_SERVER }); //<- call messages error
 
     // Check for duplicates by comparing only relevant fields
     const exists = patients.some(p =>
@@ -42,14 +43,14 @@ const insertPatient = (req, res) => {
     );
 
     if (exists) {
-      return res.status(400).json({ message: "Register duplicate" });
+      return res.status(400).json({ message: messages.REGISTER_DUPLICATE });
     }
 
     // Post insert patient if no exist duplicates
     model.createPatient(patient, (error, id) => {
-      if (error) return res.status(500).json({ error: "Internal Server Error" });
+      if (error) return res.status(500).json({ message: messages.ERROR_INTERNAL_SERVER });
 
-      res.status(201).json({ message: "Patient created Successful", id });
+      res.status(201).json({ message: messages.SUCCESS_CREATE, id }); // <- MESSAGE SUCCESSFUL
     });
   });
 };
@@ -62,10 +63,10 @@ const insertPatient = (req, res) => {
 
 const fetchAllPatients = (req, res) => {
   model.getAllPatients((error, patients) => {
-    if (error) return res.status(500).json({ error: "Internal Server Error" });
+    if (error) return res.status(500).json({ message: messages.ERROR_INTERNAL_SERVER });
 
     if (patients.length === 0) {
-      return res.json({ message: "Patients no registers found for moment", data: [] });
+      return res.json({ message: messages.PATIENT_NOT_REGISTER, data: [] });
     }
 
     res.json(patients);
@@ -81,8 +82,8 @@ const getPatientById = (req, res) => {
   const { id } = req.params;
 
   model.getById(id, (error, patient) => {
-    if (error) return res.status(500).json({ message: "Internal Server Error" });
-    if (!patient) return res.status(404).json({ message: "Patient Not Exist! :(" });
+    if (error) return res.status(500).json({ message: messages.ERROR_INTERNAL_SERVER });
+    if (!patient) return res.status(404).json({ message: messages.PATIENT_NOT_FOUND });
 
     res.json(patient);
   });
@@ -116,14 +117,14 @@ const updatePatient = (req, res) => {
 
   model.updatePatient(id, patient, (error, changes) => {
     if (error) {
-      return res.status(500).json({ message: "Internal Server Error" });
+      return res.status(500).json({ message: messages.ERROR_INTERNAL_SERVER });
     }
 
     if (changes === 0) {
-      return res.status(404).json({ message: "Patient Not Found" });
+      return res.status(404).json({ message: messages.PATIENT_NOT_FOUND });
     }
 
-    res.status(200).json({ message: "Patient updated successfully", id });
+    res.status(200).json({ message: messages.SUCCESS_UPDATE, id });
   });
 };
 
@@ -133,15 +134,28 @@ const updatePatient = (req, res) => {
 // METHOD DELETE / delete patient
 // ------------------------
 
-// Eliminar paciente
+// Controller to delete a patient by ID
+
 const deletePatient = (req, res) => {
-  const { id } = req.params;
+  const { id } = req.params; // obtenemos el ID desde la URL
+
+  // call the model to delete the patient
   model.deletePatient(id, (error, changes) => {
-    if (error) return res.status(500).json({ message: "Internal Server Error" });
-    if (changes === 0) return res.status(404).json({ message: "Patient not found" });
-    res.status(200).json({ message: "Patient deleted successfully", id });
+    if (error) {
+      // if an error occurs in the database -> 500
+      return res.status(500).json({ message: messages.ERROR_INTERNAL_SERVER });
+    }
+
+    if (changes === 0) {
+      // if nothing was deleted -> patient does not exist -> 404
+      return res.status(404).json({ message: messages.PATIENT_NOT_FOUND });
+    }
+
+    // if everything goes well -> patient deleted successfully -> 200
+    res.status(200).json({ message: messages.SUCCESS_DELETE, id });
   });
 };
+
 
 module.exports = {
   insertPatient,

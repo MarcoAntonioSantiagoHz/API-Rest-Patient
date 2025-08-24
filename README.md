@@ -67,16 +67,16 @@ Get-All-Patients:
 http://localhost:3000/api/patients
 
 Create-Patient:
-http://localhost:3000/api/patients
+http://localhost:3000/api/create/patient
 
 Get-Patient-ById:
-http://localhost:3000/api/patients/9
+http://localhost:3000/api/patients/{id}
 
 Update-Patient-ById:
-http://localhost:3000/api/patients/9
+http://localhost:3000/api/patients/{id}
 
 Delete-Patient-ById:
-http://localhost:3000/api/patients/9
+http://localhost:3000/api/patients/{id}
 ```
 
 ## NOTES:
